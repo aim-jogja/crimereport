@@ -80,6 +80,31 @@ class LoginController extends Controller
         }
     }
 
+    public function userRegister(Request $request){
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['error' => $validator->errors()->all()]);
+        }
+
+        $police = User::create([
+            'username' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+        if($police->save()){
+            $success['success'] = true;
+            return response()->json($success, 200);
+        }else{
+            $success['success'] = false;
+            $success['message'] = "gagal";
+            return response()->json($success, 200);
+        }
+    }
+
     public function userLogin(Request $request)
     {
         $validator = Validator::make($request->all(), [
