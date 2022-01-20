@@ -91,7 +91,7 @@ class LoginController extends Controller
         }
 
         $police = User::create([
-            'username' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);

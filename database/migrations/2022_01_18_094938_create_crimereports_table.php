@@ -14,7 +14,13 @@ class CreateCrimereportsTable extends Migration
     public function up()
     {
         Schema::create('crimereports', function (Blueprint $table) {
-            $table->id();
+            $table->id('CaseID');
+            $table->string('casetype');
+            $table->date('date_case')->nullable();
+            $table->string('picture')->nullable();
+            $table->text('description')->nullable();
+            $table->string('police_desc')->nullable();
+            $table->string('location')->nullable();
             $table->timestamps();
         });
     }

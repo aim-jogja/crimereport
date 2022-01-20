@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\LoginController;
+use App\Http\Controllers\api\ContentController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,6 +17,8 @@ use App\Http\Controllers\api\LoginController;
 
 Route::post('user/login',[LoginController::class, 'userLogin'])->name('userLogin');
 Route::post('user/register',[LoginController::class, 'userRegister'])->name('userRegister');
+Route::get('user/crimereport',[ContentController::class, 'crimereport'])->name('crimereport');
+Route::post('user/sendreport',[ContentController::class, 'sendreport'])->name('sendreport');
 
 Route::group( ['prefix' => 'user','middleware' => ['auth:user-api','scopes:user'] ],function(){
    // authenticated staff routes here 

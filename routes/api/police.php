@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\LoginController;
+use App\Http\Controllers\api\ContentController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,6 +17,8 @@ use App\Http\Controllers\api\LoginController;
 
 Route::post('police/login',[LoginController::class, 'policeLogin'])->name('policeLogin');
 Route::post('police/register',[LoginController::class, 'policeRegister'])->name('policeRegister');
+Route::get('police/crimereport',[ContentController::class, 'crimereport'])->name('crimereport');
+Route::post('police/sendreport',[ContentController::class, 'sendreport'])->name('sendreport');
 
 Route::group( ['prefix' => 'police','middleware' => ['auth:police-api','scopes:police'] ],function(){
    // authenticated staff routes here 
